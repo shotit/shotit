@@ -13,3 +13,6 @@
 [submodule "shotit-media"]
 	path = shotit-media
 	url = https://github.com/shotit/shotit-media.git
+[submodule "shotit-sorter"]
+	path = shotit-sorter
+	url = https://github.com/shotit/shotit-sorter.git
