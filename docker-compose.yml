@@ -4,13 +4,6 @@ services:
   api:
     container_name: shotit-api
     image: ghcr.io/shotit/shotit-api:v0.9.1
-    depends_on:
-      - redis
-      - mariadb
-      - liresolr
-      - searcher
-      - sorter
-      - standalone
     restart: unless-stopped
     environment:
       - TRACE_ALGO=cl
@@ -33,6 +26,13 @@ services:
       - MILVUS_URL=172.17.0.1:${MILVUS_PORT}
     ports:
       - ${API_PORT}:3000
+    depends_on:
+      - redis
+      - mariadb
+      - liresolr
+      - searcher
+      - sorter
+      - standalone
     volumes:
       - type: bind
         source: ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/shotit-hash
@@ -55,6 +55,8 @@ services:
       - AWS_SECRET_KEY=${AWS_SECRET_KEY}
     ports:
       - ${MEDIA_PORT}:3000
+    depends_on:
+      - minio
     volumes:
       - type: bind
         source: ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/shotit-media
@@ -64,7 +66,7 @@ services:
 
 
   adminer:
-    container_name: shotit-adminer    
+    container_name: shotit-adminer
     image: adminer:latest
     restart: always
     environment:
@@ -78,7 +80,7 @@ services:
 
 
   mariadb:
-    container_name: shotit-mariadb    
+    container_name: shotit-mariadb
     image: mariadb:latest
     restart: unless-stopped
     environment:
@@ -92,7 +94,7 @@ services:
 
 
   redis:
-    container_name: shotit-redis    
+    container_name: shotit-redis
     image: redis:latest
     networks:
       shotit_net:
@@ -100,7 +102,7 @@ services:
 
   liresolr:
     container_name: shotit-liresolr
-    image: ghcr.io/leslie-wong-h/liresolr:latest    
+    image: ghcr.io/leslie-wong-h/liresolr:latest
     command: solr-precreate cl_0 /opt/solr/server/solr/configsets/liresolr
     restart: unless-stopped
     ports:
@@ -187,7 +189,7 @@ services:
 
 
   etcd:
-    container_name: milvus-etcd
+    container_name: shotit-etcd
     image: quay.io/coreos/etcd:v3.5.0
     restart: unless-stopped
     environment:
@@ -205,7 +207,7 @@ services:
 
 
   minio:
-    container_name: milvus-minio
+    container_name: shotit-minio
     image: minio/minio:RELEASE.2022-03-17T06-34-49Z
     restart: unless-stopped
     environment:
@@ -214,10 +216,11 @@ services:
       - MINIO_ETCD_ENDPOINTS=http://172.17.0.1:2379
     volumes:
       - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/minio:/minio_data
-    # Local Minio Server
-    command: minio server /minio_data --console-address ":9001"
+    entrypoint: sh
+    # Local Minio Server, with initial bucket shotit-media
+    command: -c 'mkdir -p /minio_data/shotit-media && minio server /minio_data --console-address ":9001"'
     # Remote Minio Gateway
-    # command: minio gateway s3 ${AWS_ENDPOINT_URL} --console-address ":9001"
+    # command: -c 'minio gateway s3 ${AWS_ENDPOINT_URL} --console-address ":9001"'
     ports:
       - "9000:9000"
       - "9001:9001"
