@@ -102,3 +102,7 @@ dist
 
 # TernJS port file
 .tern-port
+
+# milvus specific files 
+volumes/
+milvus.yaml

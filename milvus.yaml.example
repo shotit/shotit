@@ -41,7 +41,7 @@ etcd:
     enabled: false # Whether to support ETCD secure connection mode
     tlsCert: /path/to/etcd-client.pem # path to your cert file
     tlsKey: /path/to/etcd-client-key.pem # path to your key file
-    tlsCACert:  /path/to/ca.pem # path to your CACert file
+    tlsCACert: /path/to/ca.pem # path to your CACert file
     # TLS min version
     # Optional values: 1.0, 1.1, 1.2, 1.3。
     # We recommend using version 1.2 and above
@@ -54,7 +54,7 @@ localStorage:
 # Related configuration of minio, which is responsible for data persistence for Milvus.
 minio:
   address: localhost # Address of MinIO/S3
-  port: 9000   # Port of MinIO/S3
+  port: 9000 # Port of MinIO/S3
   accessKeyID: minioadmin # accessKeyID of MinIO/S3
   secretAccessKey: minioadmin # MinIO/S3 encryption string
   useSSL: false # Access to MinIO/S3 with SSL
@@ -62,10 +62,10 @@ minio:
   rootPath: files # The root path where the message is stored in MinIO/S3
   # Whether to use AWS IAM role to access S3 instead of access/secret keys
   # For more infomation, refer to https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html
-  useIAM: false 
-  # Custom endpoint for fetch IAM role credentials. 
+  useIAM: false
+  # Custom endpoint for fetch IAM role credentials.
   # Leave it empty if you want to use AWS default endpoint
-  iamEndpoint: "" 
+  iamEndpoint: ""
 
 # Milvus supports three MQ: rocksmq(based on RockDB), Pulsar and Kafka, which should be reserved in config what you use.
 # There is a note about enabling priority if we config multiple mq in this file
@@ -94,7 +94,7 @@ rocksmq:
   retentionTimeInMinutes: 60 # 1 hour, 1 * 1 * 60 minutes, The retention time of the message in rocksmq.
   retentionSizeInMB: 1024 # 1 GB, 1 * 1024 MB, The retention size of the message in rocksmq.
   compactionInterval: 3600 # 1 hour, trigger rocksdb compaction every hour to remove deleted data
-  lrucacheratio:  0.06 # rocksdb cache memory ratio
+  lrucacheratio: 0.06 # rocksdb cache memory ratio
 
 # Related configuration of rootCoord, used to handle data definition language (DDL) and data control language (DCL) requests
 rootCoord:
@@ -141,14 +141,13 @@ proxy:
   msgStream:
     timeTick:
       bufSize: 512
-  maxNameLength: 255  # Maximum length of name for a collection or alias
-  maxFieldNum: 256     # Maximum number of fields in a collection
+  maxNameLength: 255 # Maximum length of name for a collection or alias
+  maxFieldNum: 256 # Maximum number of fields in a collection
   maxDimension: 32768 # Maximum dimension of a vector
   maxShardNum: 256 # Maximum number of shards in a collection
   maxTaskNum: 1024 # max task number of proxy task queue
   # please adjust in embedded Milvus: false
   ginLogging: true # Whether to produce gin logs.
-
 
 # Related configuration of queryCoord, used to manage topology and load balancing for the query nodes, and handoff from growing segments to sealed segments.
 queryCoord:
@@ -232,7 +231,6 @@ dataCoord:
     missingTolerance: 86400 # file meta missing tolerance duration in seconds, 60*24
     dropTolerance: 86400 # file belongs to dropped entity tolerance duration in seconds, 60*24
 
-
 dataNode:
   port: 21124
 
@@ -265,8 +263,8 @@ grpc:
   clientMaxSendSize: 104857600 # 100 MB, 100 * 1024 * 1024
 
   client:
-    dialTimeout:      5000
-    keepAliveTime:    10000
+    dialTimeout: 5000
+    keepAliveTime: 10000
     keepAliveTimeout: 20000
     maxMaxAttempts: 5
     initialBackOff: 1.0
@@ -278,7 +276,6 @@ tls:
   serverPemPath: configs/cert/server.pem
   serverKeyPath: configs/cert/server.key
   caPemPath: configs/cert/ca.pem
-
 
 common:
   # Channel name generation rule: ${namePrefix}-${ChannelIdx}
@@ -306,10 +303,10 @@ common:
     dataNodeSubNamePrefix: "dataNode"
     dataCoordSubNamePrefix: "dataCoord"
 
-  defaultPartitionName: "_default"  # default partition name for a collection
-  defaultIndexName: "_default_idx"  # default index name
+  defaultPartitionName: "_default" # default partition name for a collection
+  defaultIndexName: "_default_idx" # default index name
   retentionDuration: 432000 # 5 days in seconds
-  entityExpiration:  -1     # Entity expiration in seconds, CAUTION make sure entityExpiration >= retentionDuration and -1 means never expire
+  entityExpiration: -1 # Entity expiration in seconds, CAUTION make sure entityExpiration >= retentionDuration and -1 means never expire
 
   gracefulTime: 5000 # milliseconds. it represents the interval (in ms) by which the request arrival time needs to be subtracted in the case of Bounded Consistency.
 
