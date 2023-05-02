@@ -118,7 +118,7 @@ services:
 
 
   watcher:
-    container_name: shotit-watcher
+    container_name: shotit-worker-watcher
     image: ghcr.io/shotit/shotit-worker-watcher:v0.9.3
     restart: unless-stopped
     environment:
@@ -135,7 +135,7 @@ services:
 
 
   hasher:
-    container_name: shotit-hasher
+    container_name: shotit-worker-hasher
     image: ghcr.io/shotit/shotit-worker-hasher:v0.9.3
     restart: unless-stopped
     environment:
@@ -151,7 +151,7 @@ services:
 
 
   loader:
-    container_name: shotit-loader
+    container_name: shotit-worker-loader
     image: ghcr.io/shotit/shotit-worker-loader:v0.9.3
     restart: unless-stopped
     environment:
@@ -164,7 +164,7 @@ services:
 
 
   searcher:
-    container_name: shotit-searcher
+    container_name: shotit-worker-searcher
     image: ghcr.io/shotit/shotit-worker-searcher:v0.9.3
     restart: unless-stopped
     ports:
