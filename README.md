@@ -19,7 +19,7 @@ Shotit is a screenshot-to-video search engine tailored for TV & Film, blazing-fa
 
 ## Quick Start 🚀
 
-Docker Compose required, Please install it first.
+Docker Compose is required, Please install it first.
 
 Minimum workload: 2v16G, 4v32G preferred.
 
@@ -46,13 +46,13 @@ Once the cluster is ready, you can add your video files to the incoming folder. 
 ./volumes/shotit-incoming/tt1254207/Big_Buck_Bunny.mp4
 ```
 
-Restart `shotit-watcher`, in case it doesn't catch your file change.
+Restart `shotit-worker-watcher`, in case it doesn't catch your file change.
 
 ```
-docker restart shotit-watcher
+docker restart shotit-worker-watcher
 ```
 
-When `shotit-worker-watcher` detects the existence of video files in the incoming folder, it would start uploading the videos to object-storage powered `shotit-media`. After the upload, the videos would be eliminated, then `shotit-worker-hasher` creates hash and `shotit-worker-loader` loads the hash to vector database. Use the following command to see whether the index process has completed: 
+When `shotit-worker-watcher` detects the existence of video files in the incoming folder, it would start uploading the videos to object-storage powered `shotit-media`. After the upload, the videos would be eliminated, then `shotit-worker-hasher` creates hash and `shotit-worker-loader` loads the hash to vector database. Use the following command to see whether the index process has been completed: 
 ```
 docker logs -f -n 100 shotit-worker-loader
 ```
