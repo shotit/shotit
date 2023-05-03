@@ -92,7 +92,7 @@ Notice: the first time of api call should be longer since shotit has to load has
 
 Please see [here](https://shotit.github.io/) for full documentation on:
 
-- Getting started (installation, hands-on demo guide)
+- Getting started (installation, hands-on demo guide, cloud-native configuration)
 - Reference (full API docs, limitation)
 - Resources (explanation of core concepts)
 
