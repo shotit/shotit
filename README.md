@@ -33,6 +33,18 @@ cd shotit
 - Copy `milvus.yaml.example` to `milvus.yaml`
 - Edit `milvus.yaml` as appropriate for your setup, as is for the first time.
 
+Create these necessary folders.
+
+```
+mkdir -p /volumes/shotit-hash
+mkdir -p /volumes/shotit-incoming
+mkdir -p /volumes/shotit-media
+mkdir -p /volumes/mycores
+mkdir -p /volumes/mysql
+```
+
+Then, up docker-compose services.
+
 ```
 (Windows or Mac):
 docker compose up -d
@@ -92,7 +104,7 @@ Notice: the first time of api call should be longer since shotit has to load has
 
 Please see [here](https://shotit.github.io/) for full documentation on:
 
-- Getting started (installation, hands-on demo guide, cloud-native configuration)
+- Getting started (installation, hands-on demo guide, cloud-native S3 configuration)
 - Reference (full API docs, limitation)
 - Resources (explanation of core concepts)
 
