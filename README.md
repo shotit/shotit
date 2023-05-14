@@ -36,11 +36,17 @@ cd shotit
 Create these necessary folders.
 
 ```
-mkdir -p /volumes/shotit-hash
-mkdir -p /volumes/shotit-incoming
-mkdir -p /volumes/shotit-media
-mkdir -p /volumes/mycores
-mkdir -p /volumes/mysql
+mkdir -p volumes/shotit-hash
+mkdir -p volumes/shotit-incoming
+mkdir -p volumes/shotit-media
+mkdir -p volumes/mycores
+mkdir -p volumes/mysql
+```
+
+Set the user and group information of `mycores` to 8983, required by `liresolr`. 
+
+```
+sudo chown 8983:8983 volumes/mycores
 ```
 
 Then, up docker-compose services.
