@@ -34,9 +34,7 @@ services:
       - sorter
       - standalone
     volumes:
-      - type: bind
-        source: ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/shotit-hash
-        target: /mnt/hash
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/shotit-hash:/mnt/hash
     networks:
       shotit_net:
 
@@ -58,9 +56,7 @@ services:
     depends_on:
       - minio
     volumes:
-      - type: bind
-        source: ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/shotit-media
-        target: /mnt/
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/shotit-media:/mnt/
     networks:
       shotit_net:
 
@@ -86,9 +82,7 @@ services:
     environment:
       - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
     volumes:
-      - type: bind
-        source: ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/mysql
-        target: /var/lib/mysql
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/mysql:/var/lib/mysql
     networks:
       shotit_net:
 
@@ -108,9 +102,7 @@ services:
     ports:
       - ${SOLR_PORT}:8983
     volumes:
-      - type: bind
-        source: ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/mycores
-        target: /var/solr
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/mycores:/var/solr
     environment:
       - SOLR_HEAP=2G
     networks:
@@ -127,9 +119,7 @@ services:
       - TRACE_MEDIA_URL=http://172.17.0.1:${MEDIA_PORT}
       - TRACE_WATCH_PATH=/mnt/
     volumes:
-      - type: bind
-        source: ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/shotit-incoming
-        target: /mnt/
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/shotit-incoming:/mnt/
     networks:
       shotit_net:
 
