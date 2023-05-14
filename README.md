@@ -33,6 +33,16 @@ cd shotit
 - Copy `milvus.yaml.example` to `milvus.yaml`
 - Edit `milvus.yaml` as appropriate for your setup, as is for the first time.
 
+Create these necessary folders.
+
+```
+mkdir -p /volumes/shotit-hash
+mkdir -p /volumes/shotit-incoming
+mkdir -p /volumes/shotit-media
+mkdir -p /volumes/mycores
+mkdir -p /volumes/mysql
+```
+
 Then, up docker-compose services.
 
 ```
