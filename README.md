@@ -64,7 +64,7 @@ Once the cluster is ready, you can add your video files to the incoming folder. 
 ./volumes/shotit-incoming/tt1254207/Big_Buck_Bunny.mp4
 ```
 
-Restart `shotit-worker-watcher`, in case it doesn't catch your file change.
+Restart `shotit-worker-watcher`, in case it doesn't catch the change of your files.
 
 ```
 docker restart shotit-worker-watcher
@@ -95,8 +95,8 @@ Response:
             "from": 473.75,
             "to": 479.17,
             "similarity": 0.9992420673370361,
-            "video": "http://172.17.0.1:3312/video/tt1254207/Big%20Buck%20Bunny.mp4?t=476.46000000000004&now=1682985600&token=kc64vEWHPMsvu54Fpl1BrR7wz8",
-            "image": "http://172.17.0.1:3312/image/tt1254207/Big%20Buck%20Bunny.mp4.jpg?t=476.46000000000004&now=1682985600&token=K0qxDPHhoviiexOyEvS9qHRim4"
+            "video": "http://127.0.0.1:3312/video/tt1254207/Big%20Buck%20Bunny.mp4?t=476.46000000000004&now=1682985600&token=kc64vEWHPMsvu54Fpl1BrR7wz8",
+            "image": "http://127.0.0.1:3312/image/tt1254207/Big%20Buck%20Bunny.mp4.jpg?t=476.46000000000004&now=1682985600&token=K0qxDPHhoviiexOyEvS9qHRim4"
         }
     ]
 }
