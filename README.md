@@ -158,6 +158,8 @@ Please see [here](https://shotit.github.io/) for full documentation on:
 ## Live Demo
 
 
+[https://shotit.github.io/shotit-frontend/demo](https://shotit.github.io/shotit-frontend/demo)
+
 
 ## Acknowledgment
 
