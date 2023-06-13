@@ -60,6 +60,15 @@ docker compose up -d
 docker-compose up -d
 ```
 
+PS: The docker-compose.yml file fetches docker images from GitHub. If you prefer dockerhub, use the following commands instead.
+
+```
+(Windows or Mac):
+docker compose -f docker-hub-compose.yml up -d
+(Linux):
+docker-compose -f docker-hub-compose.yml up -d
+```
+
 Once the cluster is ready, you can add your video files to the incoming folder. Take Blender's Big Buck Bunny as an example, whose imdb tag is tt1254207, the path should be:
 
 ```

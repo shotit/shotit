@@ -1,0 +1,257 @@
+version: "3.5"
+
+services:
+  api:
+    container_name: shotit-api
+    image: lesliewong007/shotit-api:v0.9.3
+    restart: unless-stopped
+    environment:
+      - TRACE_ALGO=cl
+      - SOLA_DB_HOST=mariadb
+      - SOLA_DB_PORT=3306
+      - SOLA_DB_USER=root
+      - SOLA_DB_PWD=${MARIADB_ROOT_PASSWORD}
+      - SOLA_DB_NAME=sola
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - SERVER_PORT=3000
+      - SOLA_SOLR_LIST=http://172.17.0.1:${SOLR_PORT}/solr/
+      - SOLA_SOLR_SIZE=4
+      - TRACE_MEDIA_URL=${NEXT_PUBLIC_MEDIA_ENDPOINT}
+      - TRACE_MEDIA_SALT=${TRACE_MEDIA_SALT}
+      - TRACE_API_SECRET=${TRACE_API_SECRET}
+      - HASH_PATH=/mnt/hash
+      - SEARCHER_URL=http://172.17.0.1:${SEARCHER_PORT}
+      - SORTER_URL=http://172.17.0.1:${SORTER_PORT}
+      - MILVUS_URL=172.17.0.1:${MILVUS_PORT}
+    ports:
+      - ${API_PORT}:3000
+    depends_on:
+      - redis
+      - mariadb
+      - liresolr
+      - searcher
+      - sorter
+      - standalone
+    volumes:
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/shotit-hash:/mnt/hash
+    networks:
+      shotit_net:
+
+
+  media:
+    container_name: shotit-media
+    image: lesliewong007/shotit-media:v0.9.5
+    restart: unless-stopped
+    environment:
+      - TRACE_MEDIA_SALT=${TRACE_MEDIA_SALT}
+      - TRACE_API_SECRET=${TRACE_API_SECRET}
+      - AWS_BUCKET=${AWS_BUCKET}
+      - AWS_ENDPOINT_URL=${AWS_ENDPOINT_URL}
+      - AWS_REGION=${AWS_REGION}
+      - AWS_ACCESS_KEY=${AWS_ACCESS_KEY}
+      - AWS_SECRET_KEY=${AWS_SECRET_KEY}
+    ports:
+      - ${MEDIA_PORT}:3000
+    depends_on:
+      - minio
+    volumes:
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/shotit-media:/mnt/
+    networks:
+      shotit_net:
+
+
+  adminer:
+    container_name: shotit-adminer
+    image: adminer:latest
+    restart: always
+    environment:
+      - ADMINER_DEFAULT_SERVER=mariadb
+      - ADMINER_DEFAULT_USER=root
+      - ADMINER_DEFAULT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+    ports:
+      - ${ADMINER_PORT}:8080
+    networks:
+      shotit_net:
+
+
+  mariadb:
+    container_name: shotit-mariadb
+    image: mariadb:latest
+    restart: unless-stopped
+    environment:
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+    volumes:
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/mysql:/var/lib/mysql
+    networks:
+      shotit_net:
+
+
+  redis:
+    container_name: shotit-redis
+    image: redis:latest
+    networks:
+      shotit_net:
+
+
+  liresolr:
+    container_name: shotit-liresolr
+    image: lesliewong007/liresolr:latest
+    command: solr-precreate cl_0 /opt/solr/server/solr/configsets/liresolr
+    restart: unless-stopped
+    ports:
+      - ${SOLR_PORT}:8983
+    volumes:
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/mycores:/var/solr
+    environment:
+      - SOLR_HEAP=2G
+    networks:
+      shotit_net:
+
+
+  watcher:
+    container_name: shotit-worker-watcher
+    image: lesliewong007/shotit-worker-watcher:v0.9.3
+    restart: unless-stopped
+    environment:
+      - TRACE_API_URL=http://172.17.0.1:${API_PORT}
+      - TRACE_API_SECRET=${TRACE_API_SECRET}
+      - TRACE_MEDIA_URL=http://172.17.0.1:${MEDIA_PORT}
+      - TRACE_WATCH_PATH=/mnt/
+    volumes:
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/shotit-incoming:/mnt/
+    networks:
+      shotit_net:
+
+
+  hasher:
+    container_name: shotit-worker-hasher
+    image: lesliewong007/shotit-worker-hasher:v0.9.3
+    restart: unless-stopped
+    environment:
+      - TRACE_API_URL=http://172.17.0.1:${API_PORT}
+      - TRACE_API_SECRET=${TRACE_API_SECRET}
+      - TRACE_MEDIA_URL=http://172.17.0.1:${MEDIA_PORT}
+    ulimits:
+      nofile:
+        soft: 1000000
+        hard: 1000000
+    networks:
+      shotit_net:
+
+
+  loader:
+    container_name: shotit-worker-loader
+    image: lesliewong007/shotit-worker-loader:v0.9.3
+    restart: unless-stopped
+    environment:
+      - TRACE_API_URL=http://172.17.0.1:${API_PORT}
+      - TRACE_API_SECRET=${TRACE_API_SECRET}
+      - TRACE_MEDIA_URL=http://172.17.0.1:${MEDIA_PORT}
+      - MILVUS_URL=172.17.0.1:${MILVUS_PORT}
+    networks:
+      shotit_net:
+
+
+  searcher:
+    container_name: shotit-worker-searcher
+    image: lesliewong007/shotit-worker-searcher:v0.9.3
+    restart: unless-stopped
+    ports:
+      - ${SEARCHER_PORT}:19531
+    environment:
+      - TRACE_ALGO=cl
+      - SOLA_SOLR_LIST=http://172.17.0.1:${SOLR_PORT}/solr/
+      - SEARCHER_URL=http://172.17.0.1:${SEARCHER_PORT}
+      - MILVUS_URL=172.17.0.1:${MILVUS_PORT}
+    networks:
+      shotit_net:
+
+
+  sorter:
+    container_name: shotit-sorter
+    image: lesliewong007/shotit-sorter:v0.9.3
+    restart: unless-stopped
+    ports:
+      - ${SORTER_PORT}:19532
+    networks:
+      shotit_net:
+
+
+  etcd:
+    container_name: shotit-etcd
+    image: quay.io/coreos/etcd:v3.5.0
+    restart: unless-stopped
+    environment:
+      - ETCD_AUTO_COMPACTION_MODE=revision
+      - ETCD_AUTO_COMPACTION_RETENTION=1000
+      - ETCD_QUOTA_BACKEND_BYTES=4294967296
+      - ETCD_SNAPSHOT_COUNT=50000
+    volumes:
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/etcd:/etcd
+    command: etcd -advertise-client-urls=http://127.0.0.1:2379 -listen-client-urls http://0.0.0.0:2379 --data-dir /etcd
+    ports:
+      - "2379:2379"
+    networks:
+      shotit_net:
+
+
+  minio:
+    container_name: shotit-minio
+    image: minio/minio:RELEASE.2022-03-17T06-34-49Z
+    restart: unless-stopped
+    environment:
+      - MINIO_ROOT_USER=${AWS_ACCESS_KEY}
+      - MINIO_ROOT_PASSWORD=${AWS_SECRET_KEY}
+      - MINIO_ETCD_ENDPOINTS=http://172.17.0.1:2379
+    volumes:
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/minio:/minio_data
+    entrypoint: sh
+    # Local Minio Server, with initial bucket shotit-media
+    command: -c 'mkdir -p /minio_data/shotit-media && minio server /minio_data --console-address ":9001"'
+    # Remote Minio Gateway
+    # command: -c 'minio gateway s3 ${AWS_ENDPOINT_URL} --console-address ":9001"'
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    depends_on:
+      - "etcd"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "curl",
+          "-f",
+          "http://localhost:9000/minio/health/live"
+        ]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+    networks:
+      shotit_net:
+
+
+  standalone:
+    container_name: milvus-standalone
+    image: milvusdb/milvus:v2.2.2
+    restart: unless-stopped
+    command: [ "milvus", "run", "standalone" ]
+    environment:
+      ETCD_ENDPOINTS: etcd:2379
+      MINIO_ADDRESS: minio:9000
+    volumes:
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/milvus:/var/lib/milvus
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/milvus.yaml:/milvus/configs/milvus.yaml
+    ports:
+      - "19530:19530"
+      - "9091:9091"
+    depends_on:
+      - "etcd"
+      - "minio"
+    networks:
+      shotit_net:
+
+
+networks:
+  shotit_net:
+    driver: bridge
