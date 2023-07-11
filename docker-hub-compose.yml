@@ -233,7 +233,7 @@ services:
 
   standalone:
     container_name: milvus-standalone
-    image: milvusdb/milvus:v2.2.2
+    image: milvusdb/milvus:v2.2.11
     restart: unless-stopped
     command: [ "milvus", "run", "standalone" ]
     environment:

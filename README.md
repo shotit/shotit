@@ -146,7 +146,7 @@ Please see [here](https://shotit.github.io/) for full documentation on:
 | [mariadb](https://mariadb.org/)                |           | [![Docker Image Size](https://img.shields.io/docker/image-size/_/mariadb/latest?style=flat-square)](https://hub.docker.com/r/_/mariadb) |
 | [adminer](https://www.adminer.org)                |        | [![Docker Image Size](https://img.shields.io/docker/image-size/_/adminer/latest?style=flat-square)](https://hub.docker.com/r/_/adminer) |
 | [redis](https://redis.io/)                  |         | [![Docker Image Size](https://img.shields.io/docker/image-size/_/redis/latest?style=flat-square)](https://hub.docker.com/r/_/redis) |
-| [milvus-standalone](https://milvus.io/)      |         | [![Docker Image Size](https://img.shields.io/docker/image-size/milvusdb/milvus/v2.2.2?style=flat-square)](https://hub.docker.com/r/milvusdb/milvus) |
+| [milvus-standalone](https://milvus.io/)      |         | [![Docker Image Size](https://img.shields.io/docker/image-size/milvusdb/milvus/v2.2.11?style=flat-square)](https://hub.docker.com/r/milvusdb/milvus) |
 
 ### Go deeper
 
