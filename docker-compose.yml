@@ -41,7 +41,7 @@ services:
 
   media:
     container_name: shotit-media
-    image: ghcr.io/shotit/shotit-media:v0.9.6
+    image: ghcr.io/shotit/shotit-media:v0.9.7
     restart: unless-stopped
     environment:
       - TRACE_MEDIA_SALT=${TRACE_MEDIA_SALT}
