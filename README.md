@@ -103,6 +103,7 @@ Response:
             "imdb": "tt1254207",
             "filename": "Big_Buck_Bunny.mp4",
             "episode": null,
+            "duration": 596.4169921875,
             "from": 473.75,
             "to": 479.17,
             "similarity": 0.9992420673370361,
