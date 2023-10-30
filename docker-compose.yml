@@ -3,7 +3,7 @@ version: "3.5"
 services:
   api:
     container_name: shotit-api
-    image: ghcr.io/shotit/shotit-api:v0.9.9
+    image: ghcr.io/shotit/shotit-api:v0.9.10
     restart: unless-stopped
     environment:
       - TRACE_ALGO=cl
