@@ -118,7 +118,7 @@ Response:
 
 Notice: the first time of api call should be longer since shotit has to load hash completely into RAM first.
 
-## References 📋
+## Reference 📋
 
 Wong, L. (2024). Shotit: Compute-efficient image-to-video search engine for the cloud. ArXiv. /abs/2404.12169
 
