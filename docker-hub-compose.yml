@@ -6,7 +6,7 @@ services:
     image: lesliewong007/shotit-api:v0.9.13
     restart: unless-stopped
     environment:
-      - TRACE_ALGO=cl
+      - TRACE_ALGO=${TRACE_ALGO}
       - SOLA_DB_HOST=mariadb
       - SOLA_DB_PORT=3306
       - SOLA_DB_USER=root
