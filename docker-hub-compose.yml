@@ -97,7 +97,7 @@ services:
   liresolr:
     container_name: shotit-liresolr
     image: lesliewong007/liresolr:latest
-    command: solr-precreate cl_0 /opt/solr/server/solr/configsets/liresolr
+    command: solr-precreate "${TRACE_ALGO}_0" /opt/solr/server/solr/configsets/liresolr
     restart: unless-stopped
     ports:
       - ${SOLR_PORT}:8983
