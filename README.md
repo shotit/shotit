@@ -5,7 +5,7 @@
 </p>
 <br/>
 <p align="center">
-  <a href="https://github.com/shotit/shotit-api"><img src="https://img.shields.io/docker/v/lesliewong007/shotit-api?style=flat-square" alt="Version"></a>
+  <a href="https://github.com/shotit/shotit-api"><img src="https://img.shields.io/docker/v/shotit/shotit-api?style=flat-square" alt="Version"></a>
   <a href="https://github.com/shotit/shotit-api"><img src="https://img.shields.io/static/v1?label=Repo&message=Shotit-api&color=brightgreen&style=flat-square" alt="Shotit-api"></a>
   <a href="https://github.com/shotit/shotit-media"><img src="https://img.shields.io/static/v1?label=Repo&message=Shotit-media&color=brightgreen&style=flat-square" alt="Shotit-media"></a>
   <a href="https://github.com/shotit/shotit-worker"><img src="https://img.shields.io/static/v1?label=Repo&message=Shotit-worker&color=brightgreen&style=flat-square" alt="Shotit-worker"></a>
@@ -21,7 +21,7 @@ Shotit is a screenshot-to-video search engine tailored for TV & Film, blazing-fa
 
 ## Quick Start 🚀
 
-Docker Compose is required, Please install it first.
+Docker Compose is required, please install it first.
 
 Minimum workload: 2v16G, 4v32G preferred.
 
@@ -138,20 +138,20 @@ Please see [here](https://shotit.github.io/) for full documentation on:
 
 | Docker Image           | Docker CI Build | Image Size |
 | ---------------------- | --------------- | ---------- |
-| [shotit-api](https://github.com/shotit/shotit-api)| [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/shotit/shotit-api/docker-image.yml?style=flat-square)](https://github.com/shotit/shotit-api/actions) | [![Docker Image Size](https://img.shields.io/docker/image-size/lesliewong007/shotit-api/v0.9.18?style=flat-square)](https://hub.docker.com/r/lesliewong007/shotit-api) |
-| [shotit-media](https://github.com/shotit/shotit-media) | [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/shotit/shotit-media/docker-image.yml?style=flat-square)](https://github.com/shotit/shotit-media/actions) | [![Docker Image Size](https://img.shields.io/docker/image-size/lesliewong007/shotit-media/v0.9.11?style=flat-square)](https://hub.docker.com/r/lesliewong007/shotit-media) |
-| [shotit-worker-watcher](https://github.com/shotit/shotit-worker)  | [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/shotit/shotit-worker/docker-image.yml?style=flat-square)](https://github.com/shotit/shotit-worker/actions) | [![Docker Image Size](https://img.shields.io/docker/image-size/lesliewong007/shotit-worker-watcher/v0.9.21?style=flat-square)](https://hub.docker.com/r/lesliewong007/shotit-worker-watcher) |
-| [shotit-worker-hasher](https://github.com/shotit/shotit-worker)   |  [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/shotit/shotit-worker/docker-image.yml?style=flat-square)](https://github.com/shotit/shotit-worker/actions) | [![Docker Image Size](https://img.shields.io/docker/image-size/lesliewong007/shotit-worker-hasher/v0.9.21?style=flat-square)](https://hub.docker.com/r/lesliewong007/shotit-worker-hasher) |
-| [shotit-worker-loader](https://github.com/shotit/shotit-worker)   |  [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/shotit/shotit-worker/docker-image.yml?style=flat-square)](https://github.com/shotit/shotit-worker/actions) | [![Docker Image Size](https://img.shields.io/docker/image-size/lesliewong007/shotit-worker-loader/v0.9.21?style=flat-square)](https://hub.docker.com/r/lesliewong007/shotit-worker-loader) |
-| [shotit-worker-searcher](https://github.com/shotit/shotit-worker) |  [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/shotit/shotit-worker/docker-image.yml?style=flat-square)](https://github.com/shotit/shotit-worker/actions) | [![Docker Image Size](https://img.shields.io/docker/image-size/lesliewong007/shotit-worker-searcher/v0.9.21?style=flat-square)](https://hub.docker.com/r/lesliewong007/shotit-worker-searcher) |
-| [shotit-sorter](https://github.com/shotit/shotit-sorter)          |   [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/shotit/shotit-sorter/docker-image.yml?style=flat-square)](https://github.com/shotit/shotit-sorter/actions) | [![Docker Image Size](https://img.shields.io/docker/image-size/lesliewong007/shotit-sorter/v0.9.3?style=flat-square)](https://hub.docker.com/r/lesliewong007/shotit-sorter) |
-| [liresolr](https://github.com/Leslie-Wong-H/liresolr) | | [![Docker Image Size](https://img.shields.io/docker/image-size/lesliewong007/liresolr/latest?style=flat-square)](https://hub.docker.com/r/lesliewong007/liresolr) |
-| [minio](https://min.io/) |                 | [![Docker Image Size](https://img.shields.io/docker/image-size/minio/minio/RELEASE.2022-03-17T06-34-49Z?style=flat-square)](https://hub.docker.com/r/minio/minio) |
-| [etcd](https://etcd.io/)            |                 |  [![Docker Image Size](https://img.shields.io/docker/image-size/bitnami/etcd/3.5?style=flat-square)](https://quay.io/coreos/etcd:v3.5.5) |
+| [shotit-api](https://github.com/shotit/shotit-api)| [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/shotit/shotit-api/docker-image.yml?style=flat-square)](https://github.com/shotit/shotit-api/actions) | [![Docker Image Size](https://img.shields.io/docker/image-size/shotit/shotit-api/v0.9.20?style=flat-square)](https://hub.docker.com/r/shotit/shotit-api) |
+| [shotit-media](https://github.com/shotit/shotit-media) | [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/shotit/shotit-media/docker-image.yml?style=flat-square)](https://github.com/shotit/shotit-media/actions) | [![Docker Image Size](https://img.shields.io/docker/image-size/shotit/shotit-media/v0.9.16?style=flat-square)](https://hub.docker.com/r/shotit/shotit-media) |
+| [shotit-worker-watcher](https://github.com/shotit/shotit-worker)  | [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/shotit/shotit-worker/docker-image.yml?style=flat-square)](https://github.com/shotit/shotit-worker/actions) | [![Docker Image Size](https://img.shields.io/docker/image-size/shotit/shotit-worker-watcher/v0.9.25?style=flat-square)](https://hub.docker.com/r/shotit/shotit-worker-watcher) |
+| [shotit-worker-hasher](https://github.com/shotit/shotit-worker)   |  [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/shotit/shotit-worker/docker-image.yml?style=flat-square)](https://github.com/shotit/shotit-worker/actions) | [![Docker Image Size](https://img.shields.io/docker/image-size/shotit/shotit-worker-hasher/v0.9.25?style=flat-square)](https://hub.docker.com/r/shotit/shotit-worker-hasher) |
+| [shotit-worker-loader](https://github.com/shotit/shotit-worker)   |  [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/shotit/shotit-worker/docker-image.yml?style=flat-square)](https://github.com/shotit/shotit-worker/actions) | [![Docker Image Size](https://img.shields.io/docker/image-size/shotit/shotit-worker-loader/v0.9.25?style=flat-square)](https://hub.docker.com/r/shotit/shotit-worker-loader) |
+| [shotit-worker-searcher](https://github.com/shotit/shotit-worker) |  [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/shotit/shotit-worker/docker-image.yml?style=flat-square)](https://github.com/shotit/shotit-worker/actions) | [![Docker Image Size](https://img.shields.io/docker/image-size/shotit/shotit-worker-searcher/v0.9.25?style=flat-square)](https://hub.docker.com/r/shotit/shotit-worker-searcher) |
+| [shotit-sorter](https://github.com/shotit/shotit-sorter)          |   [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/shotit/shotit-sorter/docker-image.yml?style=flat-square)](https://github.com/shotit/shotit-sorter/actions) | [![Docker Image Size](https://img.shields.io/docker/image-size/shotit/shotit-sorter/v0.9.7?style=flat-square)](https://hub.docker.com/r/shotit/shotit-sorter) |
+| [liresolr](https://github.com/shotit/liresolr) | | [![Docker Image Size](https://img.shields.io/docker/image-size/shotit/liresolr/latest?style=flat-square)](https://hub.docker.com/r/shotit/liresolr) |
+| [minio](https://min.io/) |                 | [![Docker Image Size](https://img.shields.io/docker/image-size/minio/minio/RELEASE.2022-10-24T18-35-07Z?style=flat-square)](https://hub.docker.com/r/minio/minio) |
+| [etcd](https://etcd.io/)            |                 |  [![Docker Image Size](https://img.shields.io/docker/image-size/milvusdb/etcd/3.5.18-r2?style=flat-square)](https://hub.docker.com/r/milvusdb/etcd) |
 | [mariadb](https://mariadb.org/)                |           | [![Docker Image Size](https://img.shields.io/docker/image-size/_/mariadb/latest?style=flat-square)](https://hub.docker.com/r/_/mariadb) |
 | [adminer](https://www.adminer.org)                |        | [![Docker Image Size](https://img.shields.io/docker/image-size/_/adminer/latest?style=flat-square)](https://hub.docker.com/r/_/adminer) |
 | [redis](https://redis.io/)                  |         | [![Docker Image Size](https://img.shields.io/docker/image-size/_/redis/latest?style=flat-square)](https://hub.docker.com/r/_/redis) |
-| [milvus-standalone](https://milvus.io/)      |         | [![Docker Image Size](https://img.shields.io/docker/image-size/milvusdb/milvus/v2.2.11?style=flat-square)](https://hub.docker.com/r/milvusdb/milvus) |
+| [milvus-standalone](https://milvus.io/)      |         | [![Docker Image Size](https://img.shields.io/docker/image-size/milvusdb/milvus/v2.2.16?style=flat-square)](https://hub.docker.com/r/milvusdb/milvus) |
 
 ### Go deeper
 
