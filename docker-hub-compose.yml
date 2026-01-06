@@ -111,7 +111,7 @@ services:
 
   watcher:
     container_name: shotit-worker-watcher
-    image: shotit/shotit-worker-watcher:v0.9.25
+    image: shotit/shotit-worker-watcher:v0.9.26
     restart: unless-stopped
     environment:
       - TRACE_API_URL=http://172.17.0.1:${API_PORT}
@@ -126,7 +126,7 @@ services:
 
   hasher:
     container_name: shotit-worker-hasher
-    image: shotit/shotit-worker-hasher:v0.9.25
+    image: shotit/shotit-worker-hasher:v0.9.26
     restart: unless-stopped
     environment:
       - TRACE_API_URL=http://172.17.0.1:${API_PORT}
@@ -142,7 +142,7 @@ services:
 
   loader:
     container_name: shotit-worker-loader
-    image: shotit/shotit-worker-loader:v0.9.25
+    image: shotit/shotit-worker-loader:v0.9.26
     restart: unless-stopped
     environment:
       - TRACE_ALGO=${TRACE_ALGO}
@@ -156,7 +156,7 @@ services:
 
   searcher:
     container_name: shotit-worker-searcher
-    image: shotit/shotit-worker-searcher:v0.9.25
+    image: shotit/shotit-worker-searcher:v0.9.26
     restart: unless-stopped
     ports:
       - ${SEARCHER_PORT}:19531
