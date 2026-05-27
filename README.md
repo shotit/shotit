@@ -23,7 +23,7 @@ Shotit is a screenshot-to-video search engine tailored for TV & Film, blazing-fa
 
 Docker Compose is required, please install it first.
 
-Minimum workload: 2v16G, 4v32G preferred.
+Minimum workload: 2v4G+, 4v32G preferred.
 
 ```
 git clone https://github.com/shotit/shotit.git
